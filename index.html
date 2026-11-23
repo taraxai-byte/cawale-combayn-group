@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cawaale Combayn Group | Xafiiska Isku Xirka Ganacsiga & Safarrada</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #f59e0b;
+            --gold-dark: #d97706;
+            --gold-light: #fef3c7;
+            --dark: #0f172a;
+            --dark-card: #1e293b;
+            --bg-cream: #fffbeb;
+            --text-dark: #1e293b;
+            --green: #10b981;
+        }
+        * { box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; padding: 0; }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 8px;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            height: 94vh;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        /* Top Contact Bar */
+        .top-bar {
+            background: #090d16;
+            color: #fde68a;
+            padding: 8px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .top-links { display: flex; gap: 8px; }
+        .top-btn {
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .wa-btn { background: #16a34a; color: white; }
+        .em-btn { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.4); }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+            color: white;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo {
+            width: 46px;
+            height: 46px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--dark);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 19px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+        }
+        .header-text h1 { font-size: 18px; font-weight: 800; color: #ffffff; }
+        .header-text p { font-size: 11.5px; color: #cbd5e1; margin-top: 2px; }
+
+        /* Live Status Bar */
+        .status-strip {
+            background: var(--bg-cream);
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #fde68a;
+            font-size: 12px;
+        }
+        .live-dot {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #065f46;
+            font-weight: 700;
+        }
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+        }
+        .dept-badge {
+            background: var(--gold);
+            color: var(--dark);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 11px;
+        }
+
+        /* Quick Chips */
+        .chips-row {
+            display: flex;
+            gap: 8px;
+            padding: 10px 14px;
+            background: #ffffff;
+            border-bottom: 1px solid #f1f5f9;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .chips-row::-webkit-scrollbar { display: none; }
+        .chip {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            color: #92400e;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .chip:hover { background: var(--gold); color: var(--dark); }
+
+        /* Chat Area */
+        .chat-box {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .bubble {
+            max-width: 85%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .bubble.office {
+            background: #ffffff;
+            color: var(--text-dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+        .bubble.user {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #ffffff;
+            font-weight: 500;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Payment & Dispatch Card */
+        .order-card {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            padding: 14px;
+            margin-top: 6px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+        }
+        .order-card h4 { color: #92400e; font-size: 14px; margin-bottom: 6px; }
+        .pay-box {
+            background: #ffffff;
+            border: 1px dashed #d97706;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 12.5px;
+            color: #1e293b;
+            margin: 8px 0;
+        }
+        .dispatch-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: #16a34a;
+            color: white;
+            text-decoration: none;
+            padding: 11px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13.5px;
+            margin-top: 8px;
+        }
+
+        /* Input Area */
+        .input-bar {
+            padding: 12px 14px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 8px;
+        }
+        input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+        }
+        input:focus { border-color: var(--gold-dark); }
+        .send-btn {
+            background: var(--dark);
+            color: var(--gold);
+            border: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .send-btn:disabled { opacity: 0.5; }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 8px;
+            font-size: 10.5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <span>📞 +252 90 774 7783</span>
+        <div class="top-links">
+            <a href="https://wa.me" target="_blank" class="top-btn wa-btn">WhatsApp</a>
+            <a href="mailto:cawalemaxamed436@gmail.com" class="top-btn em-btn">Email</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">CC</div>
+        <div class="header-text">
+            <h1>Cawaale Combayn Group</h1>
+            <p>Xafiiska Isku Xirka Safarrada, Raashinka & Ganacsiga Xoolaha</p>
+        </div>
+    </div>
+
+    <!-- Live Status -->
+    <div class="status-strip">
+        <div class="live-dot"><span class="pulse"></span> Xafiisku Wuu Furan Yahay (24/7)</div>
+        <div class="dept-badge" id="deptDisplay">Xafiiska Guud</div>
+    </div>
+
+    <!-- Quick Buttons -->
+    <div class="chips-row">
+        <button class="chip" onclick="sendQuick('Waxaan rabaa gaari safar rakaab ah')">🚌 Safar Rakaab</button>
+        <button class="chip" onclick="sendQuick('Waxaan rabaa gaari raashin ama xamuul qaada')">🚚 Gaadiid Raashin</button>
+        <button class="chip" onclick="sendQuick('Waxaan hayaa xoolo iib ah ama daabulis u baahan')">🐪 Xoolo & Dhoofin</button>
+        <button class="chip" onclick="sendQuick('Waxaan rabaa inaan la hadlo maamulka')">👔 La Hadal Maamulka</button>
+    </div>
+
+    <!-- Chat Box -->
+    <div class="chat-box" id="chatBox">
+        <div class="bubble office">
+            Asc! Ku soo dhawow <b>Cawaale Combayn Group</b>. Waxaan kuu fududaynaynaa isku xirka gaadiidka rakaabka, daabulista raashinka, iyo ganacsiga xoolaha. Dooro adeegga sare ama noo qor dalabkaaga.
+        </div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-bar">
+        <input type="text" id="msgInput" placeholder="Qor dalabkaaga halkan..." onkeypress="if(event.key==='Enter') sendMessage()">
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
